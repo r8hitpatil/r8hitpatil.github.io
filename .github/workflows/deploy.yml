@@ -25,6 +25,11 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+        env:
+          # NEXT_PUBLIC_* vars are baked into the client bundle at build time.
+          # .env.local is gitignored, so production reads these from repo secrets.
+          NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY: ${{ secrets.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY }}
+          NEXT_PUBLIC_SITE_URL: https://r8hitpatil.github.io
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
