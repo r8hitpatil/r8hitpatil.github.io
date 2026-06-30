@@ -1,0 +1,16 @@
+
+> p1@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.9 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.3:3000
+✓ Ready in 346ms
+
+ GET /sw.js 404 in 563ms (next.js: 407ms, application-code: 156ms)
+ GET / 200 in 593ms (next.js: 204ms, application-code: 389ms)
+ GET / 200 in 314ms (next.js: 5ms, application-code: 309ms)
+ GET /sw.js 404 in 165ms (next.js: 14ms, application-code: 151ms)
+ GET / 200 in 291ms (next.js: 3ms, application-code: 287ms)
+ GET / 200 in 776ms (next.js: 8ms, application-code: 767ms)
+[?25h
