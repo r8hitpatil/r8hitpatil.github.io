@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import {
   motion,
@@ -36,6 +36,18 @@ const cardEnter = {
 export function FlipStage({ children }: { children: ReactNode }) {
   const stageRef = useRef<HTMLDivElement>(null);
 
+  // The pinned card is shared on ALL viewports (one stitched portrait). On mobile
+  // the About content stacks BELOW the photo, so the card must flip in and then
+  // exit upward sooner — otherwise it would stay pinned over the About text.
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
   // Progress across the whole hero+about block.
   const { scrollYProgress } = useScroll({
     target: stageRef,
@@ -53,14 +65,30 @@ export function FlipStage({ children }: { children: ReactNode }) {
   });
 
   // Rotation AND scale ride the SAME spring so they flip + resize together
-  // (simultaneously), in either scroll direction.
+  // (simultaneously), in either scroll direction. On mobile the card rests much
+  // SMALLER (a ~256px card, not the 400px full-bleed that swallows a phone screen
+  // and hides the surrounding text) — so it reads as one portrait stitched between
+  // the sections rather than a wall covering them.
   const rotateY = useTransform(progress, [0, 0.4], [0, 180]);
-  const scale = useTransform(progress, [0, 0.4], [0.52, 1]);
+  const scale = useTransform(progress, [0, 0.4], [0.52, isMobile ? 0.64 : 1]);
 
   // Position + fade ride the RAW scroll so the card docks and LEAVES in lock-step
   // with the page — a lagging spring here let it overlap Skills on a fast scroll.
-  const y = useTransform(scrollYProgress, [0, 0.5, 1], [246, 0, -822]);
-  const fade = useTransform(scrollYProgress, [0.82, 0.92], [1, 0]);
+  // Mobile retimes it: land by ~0.34, hold, then exit up by ~0.6 so the photo is
+  // gone before the stacked About bullets scroll into the centre of the screen.
+  // Mobile: land the small card in its spacer (~progress 0.47), hold briefly,
+  // then let it EXIT at roughly the natural scroll rate so it scrolls away glued
+  // to its slot (no empty gap, no flying-off) as the bullets rise in below it.
+  const y = useTransform(
+    scrollYProgress,
+    isMobile ? [0, 0.44, 0.5, 1] : [0, 0.5, 1],
+    isMobile ? [246, 0, 0, -1120] : [246, 0, -822],
+  );
+  const fade = useTransform(
+    scrollYProgress,
+    isMobile ? [0.82, 0.9] : [0.82, 0.92],
+    [1, 0],
+  );
   // Camera-bracket frame lives HERE (with the photo) so it tracks it and can't
   // disconnect. It belongs to the HERO only: derive its fade from the card's `y`
   // (reliable) — it's 246 at rest and drops the moment you scroll, so the frame
@@ -106,7 +134,7 @@ export function FlipStage({ children }: { children: ReactNode }) {
       <motion.div
         aria-hidden
         style={{ opacity: aboutFrameOpacity }}
-        className="pointer-events-none fixed inset-0 z-20 flex items-center justify-center"
+        className="pointer-events-none fixed inset-0 z-20 hidden items-center justify-center md:flex"
       >
         <motion.div style={{ y }}>
           <AboutShadow />

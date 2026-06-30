@@ -242,9 +242,9 @@ export function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Spacer — the portrait AND its camera-bracket frame are rendered by
-            <FlipStage> (so the frame tracks the photo and can't disconnect).
-            This invisible block just keeps the headline placed. */}
+        {/* Portrait slot. On desktop this is an invisible spacer — the photo +
+            camera-bracket frame are the pinned <FlipStage> card. On mobile the
+            flip card is disabled, so we render a simple static portrait here. */}
         <div aria-hidden className="h-[245px] w-[208px] shrink-0" />
       </div>
 

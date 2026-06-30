@@ -21,7 +21,7 @@ const item = {
 // Boxy terminal/CLI chip — mono, sharp corners, prompt prefix, corner brackets,
 // invert on hover.
 const btnClass =
-  "font-pixel-ui group relative inline-flex items-center gap-2 rounded-[3px] border-[1.5px] border-[#161616] bg-[#F4F2EC] px-6 py-3 text-[13px] tracking-tight text-[#161616] transition-colors duration-150 hover:bg-[#161616] hover:text-[#F0EEE7] active:translate-y-[1px]";
+  "font-pixel-ui group relative inline-flex items-center gap-2 rounded-[3px] border-[1.5px] border-[#161616] bg-[#F4F2EC] px-3.5 py-2 text-[11px] tracking-tight text-[#161616] transition-colors duration-150 hover:bg-[#161616] hover:text-[#F0EEE7] active:translate-y-[1px] md:px-6 md:py-3 md:text-[13px]";
 
 function CliButton({
   href,
@@ -68,7 +68,7 @@ export function QuickNav() {
         variants={group}
         initial="initial"
         animate="animate"
-        className="fixed bottom-6 right-8 z-50 flex flex-col items-end gap-2 md:right-12"
+        className="fixed bottom-4 right-4 z-50 flex flex-col items-end gap-2 md:bottom-6 md:right-12"
       >
         <CliButton href="/resume.pdf" download>
           Resume

@@ -51,9 +51,9 @@ export function About() {
       </div>
 
       {/* ───────────── Main layout ───────────── */}
-      <div className="relative z-[1] mx-auto mt-12 flex max-w-[1180px] items-stretch justify-between gap-14 px-8 md:px-12">
+      <div className="relative z-[1] mx-auto mt-12 flex max-w-[1180px] flex-col items-center gap-12 px-8 md:flex-row md:items-stretch md:justify-between md:gap-14 md:px-12">
         {/* ── Left column: heading + bracketed bio + arrow ── */}
-        <div className="flex w-[290px] shrink-0 flex-col justify-center">
+        <div className="flex w-full flex-col items-start justify-center md:w-[290px]">
           <div className="relative inline-block w-fit">
             <h2
               className="pixel-flat [font-size:clamp(54px,7vw,94px)]"
@@ -67,7 +67,7 @@ export function About() {
 
           {/* Bracketed bio box — a "selection frame" with corner crop-marks
               + diagonal handle squares (matches the reference). */}
-          <div className="relative mt-14 w-[300px]">
+          <div className="relative mt-14 w-full max-w-[330px] md:w-[300px]">
             <CornerBrackets />
             <p className="px-6 py-6 text-[17px] leading-[1.7] text-[#1f1f1f]">
               I&rsquo;m Rohit, a full-stack developer based in India, currently
@@ -77,12 +77,16 @@ export function About() {
           </div>
         </div>
 
-        {/* ── Center column: spacer — the portrait is the pinned <FlipStage>
-            card (red/back face) that lands here as you scroll. ── */}
-        <div aria-hidden className="h-[470px] w-[400px] shrink-0" />
+        {/* ── Center column: invisible spacer where the pinned <FlipStage> card
+            lands (shared on all viewports). Reserves the photo's height on mobile
+            too so the stacked bullets sit below where the photo flips in. ── */}
+        <div
+          aria-hidden
+          className="h-[320px] w-full max-w-[300px] shrink-0 md:h-[470px] md:w-[400px] md:max-w-none"
+        />
 
         {/* ── Right column: bulleted paragraphs + Get Started ── */}
-        <div className="flex w-[360px] shrink-0 flex-col justify-center gap-8">
+        <div className="flex w-full flex-col justify-center gap-8 md:w-[360px]">
           <BulletPara>
             I&rsquo;m a software engineer with a strong focus on building{" "}
             <HL>modern</HL>, <HL>scalable</HL>, and <HL>performance-driven</HL> web

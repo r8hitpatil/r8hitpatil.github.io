@@ -2,6 +2,13 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* The pinned flip card (400px) can slightly exceed a narrow phone viewport while
+   centred — clip it so it never produces a horizontal scrollbar on mobile. */
+html,
+body {
+  overflow-x: hidden;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
