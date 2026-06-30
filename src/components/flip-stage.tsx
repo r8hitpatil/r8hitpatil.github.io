@@ -178,7 +178,7 @@ export function FlipStage({ children }: { children: ReactNode }) {
               {/* Front face — grayscale (hero) */}
               <div className="absolute inset-0 overflow-hidden rounded-[3px] [backface-visibility:hidden]">
                 <Image
-                  src="/assets/pf1.jpeg"
+                  src="/assets/pf1.png"
                   alt="Portrait of Rohit, full-stack developer and software engineer"
                   fill
                   priority
@@ -193,7 +193,7 @@ export function FlipStage({ children }: { children: ReactNode }) {
                 style={{ transform: "rotateY(180deg)" }}
               >
                 <Image
-                  src="/assets/pf1.jpeg"
+                  src="/assets/pf1.png"
                   alt=""
                   fill
                   sizes="400px"
