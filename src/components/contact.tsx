@@ -1,7 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { FaXTwitter, FaInstagram, FaLinkedinIn, FaEnvelope } from "react-icons/fa6";
+import {
+  FaXTwitter,
+  FaInstagram,
+  FaLinkedinIn,
+  FaEnvelope,
+  FaGithub,
+} from "react-icons/fa6";
 import type { IconType } from "react-icons";
 import { WaveText } from "@/components/wave-text";
 
@@ -14,6 +20,7 @@ const SOCIALS: { label: string; href: string; icon: IconType }[] = [
     icon: FaLinkedinIn,
   },
   { label: "Email", href: "mailto:dev.rohitpatil.25@gmail.com", icon: FaEnvelope },
+  { label: "GitHub", href: "https://github.com/r8hitpatil", icon: FaGithub },
 ];
 
 // Free Web3Forms access key — set NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY in .env.local.

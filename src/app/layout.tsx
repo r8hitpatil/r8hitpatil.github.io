@@ -27,7 +27,7 @@ const pixelUi = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Rohit — Software Engineer",
+    default: "Rohit - Software Engineer",
     template: "%s · Rohit",
   },
   description:
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    title: "Rohit — Software Engineer",
+    title: "Rohit - Software Engineer",
     description:
       "Full-stack developer building modern, scalable, performance-driven web apps and APIs.",
     siteName: "Rohit",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rohit — Software Engineer",
+    title: "Rohit - Software Engineer",
     description:
       "Full-stack developer building modern, scalable, performance-driven web apps and APIs.",
   },
